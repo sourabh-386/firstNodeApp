@@ -24,16 +24,25 @@ server.use(cors()) //conect to diffrent servers
 
 server.use(express.json()) //middleware for reading body
 
-server.use(express.static(path.resolve(__dirname, process.env.BUILD_DIR))) //this give static path
-
+server.use(express.static(path.resolve(__dirname,process.env.BUILD_DIR)))
 
 const { p_route } = require('./controller2/route')
 server.use('/data', p_route) //middelware for node routs
+
 
 // we cant use routes of react dieractly so we use this and __dirname+ give adsolute path of directry
 server.use('*', (req, res) => {
     res.sendFile(path.resolve(__dirname, 'build', 'index.html'))
 })
+
+
+
+// server.use(express.static(path.resolve(__dirname, process.env.BUILD_DIR))) //this give static path
+
+
+
+
+
 
 
 server.listen(process.env.PORT, () => {

@@ -24,7 +24,7 @@ server.use(cors()) //conect to diffrent servers
 
 server.use(express.json()) //middleware for reading body
 
-server.use(express.static(path.resolve(__dirname,'public')))
+server.use(express.static(path.resolve(__dirname,`${process.env.BUILD_DIR}`)))
 
 const { p_route } = require('./controller2/route')
 server.use('/data', p_route) //middelware for node routs
